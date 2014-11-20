@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 
-require 'MagicTCGPriceAPI'
+require 'unirest'
 
 card_name = ARGV[0]
 set_name = ARGV[1]
 
 if ARGV[1]
-  card_price = http://magictcgprices.appspot.com/api/cfb/price.json?cardname=card_name
+  card_price = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=card_name").body
 
   puts "The current price on Channel Fireball for #{card_name} from #{set_name} is #{card_price}."
 else
-  card_price = http://magictcgprices.appspot.com/api/cfb/price.json?cardname=card_name
+  card_price = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=card_name").body
 
   puts "The current price on Channel Fireball for #{card_name} is #{card_price}."
 end
