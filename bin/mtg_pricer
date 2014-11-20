@@ -11,12 +11,13 @@ else
 end
 
 price_sites = ["tcgplayer", "cfb", "ebay"]
+prices = []
 
 price_sites.each do |price_site|
-  price_site = Unirest.get("http://magictcgprices.appspot.com/api/#{price_site}/price.json?cardname=#{card_name}&cardset=#{set_name}").body
+  prices <<Unirest.get("http://magictcgprices.appspot.com/api/#{price_site}/price.json?cardname=#{card_name}&cardset=#{set_name}").body
 end
 
 puts "The current price for #{card_name} is:"
-puts "TCG Player: #{price_sites[0]}"
-puts "Channel Fireball: #{price_sites[1]}"
-puts "eBay: #{price_sites[2]}"
+puts "TCG Player: #{prices[0]}"
+puts "Channel Fireball: #{prices[1]}"
+puts "eBay: #{prices[2]}"
