@@ -10,11 +10,13 @@ else
   set_name = ""
 end
 
-tcgplayer_price = Unirest.get("http://magictcgprices.appspot.com/api/tcgplayer/price.json?cardname=#{card_name}&cardset=#{set_name}").body
-cfb_price = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=#{card_name}&cardset=#{set_name}").body
-lowest_ebay_price = Unirest.get("http://magictcgprices.appspot.com/api/ebay/price.json?cardname=#{card_name}&cardset=#{set_name}").body
+price_sites = ["tcgplayer", "cfb", "ebay"]
+
+price_sites.each do |price_site|
+  price_site = Unirest.get("http://magictcgprices.appspot.com/api/#{price_site}/price.json?cardname=#{card_name}&cardset=#{set_name}").body
+end
 
 puts "The current price for #{card_name} is:"
-puts "TCG Player: #{tcgplayer_price}"
-puts "Channel Fireball: #{cfb_price}"
-puts "eBay: #{lowest_ebay_price}"
+puts "TCG Player: #{tcgplayer}"
+puts "Channel Fireball: #{cfb}"
+puts "eBay: #{ebay}"
