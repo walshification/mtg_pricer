@@ -17,6 +17,6 @@ price_sites.each do |price_site|
 end
 
 puts "The current price for #{card_name} is:"
-puts "TCG Player: #{tcgplayer}"
-puts "Channel Fireball: #{cfb}"
-puts "eBay: #{ebay}"
+puts "TCG Player: #{price_sites[0]}"
+puts "Channel Fireball: #{price_sites[1]}"
+puts "eBay: #{price_sites[2]}"
