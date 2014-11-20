@@ -3,14 +3,18 @@
 require 'unirest'
 
 card_name = ARGV[0]
-set_name = ARGV[1]
 
 if ARGV[1]
-  card_price = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=card_name").body
-
-  puts "The current price on Channel Fireball for #{card_name} from #{set_name} is #{card_price}."
+  set_name = ARGV[1]
 else
-  card_price = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=card_name").body
-
-  puts "The current price on Channel Fireball for #{card_name} is #{card_price}."
+  set_name = ""
 end
+
+tcgplayer_price = Unirest.get("http://magictcgprices.appspot.com/api/tcgplayer/price.json?cardname=#{card_name}&cardset=#{set_name}").body
+cfb_price = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=#{card_name}&cardset=#{set_name}").body
+lowest_ebay_price = Unirest.get("http://magictcgprices.appspot.com/api/ebay/price.json?cardname=#{card_name}&cardset=#{set_name}").body
+
+puts "The current price for #{card_name} is:"
+puts "TCG Player: #{tcgplayer_price}"
+puts "Channel Fireball: #{cfb_price}"
+puts "eBay: #{lowest_ebay_price}"
