@@ -13,7 +13,7 @@ end
 price_sites = ["tcgplayer", "cfb", "ebay"]
 
 price_sites.each do |price_site|
-  price_site = Unirest.get("http://magictcgprices.appspot.com/api/#{price_site}/price.json?cardname=#{card_name}&cardset=#{set_name}").body
+  "#{price_site}" = Unirest.get("http://magictcgprices.appspot.com/api/#{price_site}/price.json?cardname=#{card_name}&cardset=#{set_name}").body
 end
 
 puts "The current price for #{card_name} is:"
