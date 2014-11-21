@@ -1,7 +1,7 @@
 require "mtg_pricer/version"
 
 module MtgPricer
-  class MtGPricer
+  class Pricer
     attr_accessor :card, :set
 
     def initialize(options = {})
@@ -13,8 +13,8 @@ module MtgPricer
       @card = Unirest.get("http://magictcgprices.appspot.com/api/tcgplayer/price.json?cardname=#{card}&cardset=#{set}").body
     end
 
-    def cfg_price(card, set)
-      @card = Unirest.get("http://magictcgprices.appspot.com/api/cfg/price.json?cardname=#{card}&cardset=#{set}").body
+    def cfb_price(card, set)
+      @card = Unirest.get("http://magictcgprices.appspot.com/api/cfb/price.json?cardname=#{card}&cardset=#{set}").body
     end
 
     def ebay_price(card, set)
