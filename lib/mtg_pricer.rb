@@ -5,8 +5,8 @@ module MtgPricer
     attr_accessor :card, :set
 
     def initialize(options = {})
-      @card = options[] || ''
-      @set = options[] || ''
+      @card = options || ''
+      @set = options || ''
     end
 
     def tcgplayer_price(card, set)
